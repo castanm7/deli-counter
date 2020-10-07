@@ -2,20 +2,30 @@
 def line (katz_deli)
     if katz_deli.size == 0 
         puts "The line is currently empty."
-    elsif katz_deli.size >= 1 
-        counter = 1
-        katz_deli.each do |name|
-            array=[]
-            # counter_name = "#{counter}. #{name}"
-            array << "#{counter}. #{name}"
-            counter += 1
+    else 
+        start = "The line is currently:"
+        katz_deli.each_with_index do |name,index|
+            name_number = " #{index + 1}. #{name}"
+            start << name_number
         end
-        array.join" "
-        # puts "The line is currently: #{counter_name}"
-        # number = katz_deli.index + 1
-        # katz_deli_with_number = []
-        # katz_deli_with_number = katz_deli.unshift("#{number}")
-        # name_and_number=katz_deli_with_number.join(" ")
-        # puts "The line is currently: #{name_and_number}"
+        puts start      
     end
 end
+
+def take_a_number(katz_deli,customer)
+    final_list = katz_deli << customer
+    number = final_list.size 
+    puts "Welcome, #{customer}. You are number #{number} in line."
+end
+
+def now_serving(katz_deli)
+    if katz_deli.size == 0
+        puts "There is nobody waiting to be served!"
+    else
+        first_customer = katz_deli.shift
+        puts "Currently serving #{first_customer}."
+    end
+end
+
+# 3. Build the `now_serving` method which should call out (i.e. `puts`) the next person in line and then remove them 
+# from the front. If there is nobody in line, it should call out (`puts`) that `"There is nobody waiting to be served!"`.
